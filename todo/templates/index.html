@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Todoリスト管理サイト</title>
+  <!-- Bootstrap CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Todoリスト管理</h1>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <!-- ここ編集中 -->
+        <form action="/register" method="post">     
+          <div class="form-group">
+            <label for="todo">新しいやること</label>
+            <input type="text" class="form-control" id="todo" name="todo" placeholder="例：牛乳を買う">
+          </div>
+          <div class="form-group">
+            <label for="deadline">期限</label>
+            <input type="date" class="form-control" id="deadline" name="deadline">
+          </div>
+          <div class="form-group">
+            <label for="priority">優先度</label>
+            <select class="form-control" id="priority" name="priority">
+              <option value="高">高</option>
+              <option value="中">中</option>
+              <option value="低">低</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">登録</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap CDN -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card mt-5">
+          <div class="card-header">
+          
+          </div>
+          <div class="card-body">
+            <ul class="list-group">
+
+              {% for todo in todo_lists %}
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>{{ todo.task }}</span>
+                <span>{{ todo.dead_line }}</span>
+                
+                
+              {% if todo.done == '高' %}
+              <span class="badge badge-danger badge-pill">{{ todo.done }}</span>
+              {% elif todo.done == '中' %}
+              <span class="badge badge-warning badge-pill">{{ todo.done }}</span>
+              {% else %}
+              <span class="badge badge-secondary badge-pill">{{ todo.done }}</span>
+              {% endif %}
+              <a class="ui red button" href="/delete/{{ todo.id }}">Delete</a>
+              </li>
+
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+<!-- 
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card mt-5">
+          <div class="card-header">
+          
+          </div>
+          <div class="card-body">
+            <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><i class="fa fa-check-square text-success mr-2"></i>来週のために食料品を買う</span>
+                <span class="badge badge-danger badge-pill">高</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><i class="fa fa-check-square text-success mr-2"></i>ブルーダートに支払いをする</span>
+                <span class="badge badge-secondary badge-pill">低</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><i class="fa fa-square text-muted mr-2"></i>オフィスの家賃を払う</span>
+                <span class="badge badge-warning badge-pill">中</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><i class="fa fa-square text-muted mr-2"></i>オフィスの食料品を買う</span>
+                <span class="badge badge-danger badge-pill">高</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><i class="fa fa-square text-muted mr-2"></i>クライアントにランチを頼む</span>
+                <span class="badge badge-secondary badge-pill">低</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html> -->
